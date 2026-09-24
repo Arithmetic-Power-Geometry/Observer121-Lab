@@ -1,47 +1,82 @@
-# Observer121-Lab
+# Observer121
 
-**A matched-control laboratory for attributing why an observation strategy appears more productive.**
+**A matched-control framework for attributing productivity in adaptive observation**
 
-## Research question
+Observer121 is a diagnostic framework for determining why one observation strategy appears more efficient than another. It separates gains associated with **selection policy, adaptivity, query-language expressivity, representation, and information efficiency** through matched experimental controls.
 
-A lower observation count does not by itself identify the source of the gain. Observer121 asks whether an apparent improvement is attributable to **selection policy, adaptivity, query-language expressivity, representation, or information efficiency**, and whether that attribution is isolated, confounded, eliminated by a matched control, interaction-dependent, or unresolved.
+## Framework
 
-The scientific framework represents an observation procedure as a configuration
+An observation experiment is represented by
 
 `C = (W, Q, P, R, B)`
 
-with world/hypothesis family, admissible query language, observation-selection policy, representation, and resource/accounting rule.
+where `W` is the world or hypothesis family, `Q` the admissible query language, `P` the observation-selection policy, `R` the representation used to realize the policy, and `B` the resource-accounting rule.
 
-## Current evidence
+For a declared source of improvement, Observer121 compares configurations under matched interventions and records whether the observed gain is isolated, confounded, reproduced by an equivalent control, interaction-dependent, or unresolved.
 
-The repository contains reproducible positive calibrations, negative controls, and an external real-data validation.
+## Main experiments
 
-- **Matched-language adaptivity:** adaptive and non-adaptive policies use the same threshold-query language. At `n = 1,048,576`, adaptive binary search uses 20 queries while exact non-adaptive identification requires 1,048,575 thresholds.
-- **Query-language calibration:** fixed bit queries reach logarithmic exact identification without requiring online query generation.
-- **Generation/compilation control:** generated balanced queries and an equivalent procedural compiled policy match query-for-query; the surviving benefit is representation succinctness rather than a unique information advantage.
-- **Promised versus justified attribution:** in the 11 x 11 additive calibration, a connected 21-cell design determines the additive model, while exact certification against an unrestricted single hidden-cell deviation requires all 121 cells.
-- **Risk-controlled assurance:** finite-population hypergeometric auditing connects the 21-cell promised design to exhaustive certification under explicit `(K, delta)` assumptions.
-- **Real-data validation:** random and uncertainty acquisition are compared on the Wisconsin Diagnostic Breast Cancer dataset with the split, initial labels, learner, features, preprocessing, and label budget held fixed.
+### Matched-language adaptivity
 
-## Scientific boundary
+For an ordered target with threshold queries, adaptive binary search requires `ceil(log2 n)` queries, whereas exact non-adaptive identification requires `n - 1` thresholds. At `n = 1,048,576`, the corresponding counts are 20 and 1,048,575.
 
-Observer121 is **not** presented as a new universal information theory, a new active-learning algorithm, a new factorial-design theorem, a new property-testing bound, or a new succinctness theorem. The candidate contribution is methodological: a common benchmark for testing whether the proposed source of an observation-productivity gain survives matched controls.
+### Query generation and procedural compilation
 
-See:
+Balanced generated queries and an equivalent procedural realization produce the same query sequence and attain the same binary information bound. Their query efficiency is therefore identical, while their representation requirements can differ substantially from explicit tree materialization.
 
-- `CLAIM_REGISTER.md` for permitted and excluded claims.
-- `CONVERGENCE_AUDIT.md` for the research convergence audit.
-- `ATTRIBUTION_THEORY.md` for the formal diagnostic states.
-- `ATTRIBUTION_MATRIX.md` for the matched-control map.
-- `JUSTIFIED_ATTRIBUTION.md` and `ASSURANCE_FRONTIER.md` for evidence-accounting boundaries.
-- `LITERATURE_CONVERGENCE.md` for the prior-art boundary.
-- `SEQUENCE.md` for earlier falsification controls and development provenance.
+### Observer121 system-observer laboratory
+
+The core laboratory contains 11 systems and 11 observers, giving 121 system-observer cells. Under an additive model, a connected spanning design determines the model from 21 observations. When the additive assumption itself must be certified against an unrestricted hidden single-cell deviation, exact certification requires all 121 cells in the worst case.
+
+### Risk-controlled assurance
+
+Between a trusted structural promise and exhaustive certification, the repository implements a finite-population audit. If the 100 unchecked cells contain at least `K` violations and `s` cells are sampled without replacement, the miss probability is
+
+`P_miss = C(100-K, s) / C(100, s)`.
+
+The audit computes the smallest sample size meeting a declared miss-risk tolerance.
+
+### Real-data validation
+
+The real-data experiment uses the Wisconsin Diagnostic Breast Cancer dataset distributed with scikit-learn. Across 30 seeds, random acquisition and uncertainty acquisition use the same train/test split, initial labels, feature representation, logistic-regression learner, preprocessing, and label budget; only the acquisition rule changes. The reported mean test accuracies reproduce the matched-selection results in the paper.
 
 ## Reproducibility
 
-GitHub Actions executes the benchmark programs and stores numerical artifacts. Scientific prose uses **Observer121** without a version suffix; version identifiers remain in software/workflow names where needed for provenance.
+The `src/` directory contains the programs used for the computational experiments. GitHub Actions workflows in `.github/workflows/` rerun the corresponding analyses and preserve their generated artifacts.
 
-The principal scripts are in `src/`, including the productivity audit, matched-language adaptivity control, external calibration, real-data validation, attribution-identifiability check, minimum-attribution kill test, justified-attribution audit, and assurance frontier.
+Principal reproducibility programs include:
+
+- `v1_adaptivity_matched_language.py`
+- `v1_external_calibration.py`
+- `v1_productivity_audit.py`
+- `v1_succinctness_attack.py`
+- `justified_attribution_audit.py`
+- `assurance_frontier.py`
+- `v1_real_data_validation.py`
+- `attribution_identifiability.py`
+- `zgtc_benchmark.py`
+
+Version identifiers in program and workflow filenames are retained for computational provenance.
+
+## Citation
+
+If you use Observer121, please cite:
+
+> Akhtar, M. A. K. (2026). *Observer121: A Matched-Control Framework for Attributing Productivity in Adaptive Observation* (Version V1). Zenodo. https://doi.org/10.5281/zenodo.22943547
+
+BibTeX:
+
+```bibtex
+@software{akhtar2026observer121,
+  author    = {Akhtar, Mohammad Amir Khusru},
+  title     = {Observer121: A Matched-Control Framework for Attributing Productivity in Adaptive Observation},
+  year      = {2026},
+  version   = {V1},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.22943547},
+  url       = {https://doi.org/10.5281/zenodo.22943547}
+}
+```
 
 ## License
 
