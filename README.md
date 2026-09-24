@@ -1,40 +1,42 @@
 # Observer121-Lab
 
-**121 system-observer worlds; 11 diagonal observations; 110 cross-observer intersections.**
+**121 system-observer worlds; a reproducible falsification laboratory for testing apparent gains in adaptive observation.**
 
-## v3: Zigzag -> Gap -> Target -> Crash (ZGTC)
+## Research status
 
-The v3 benchmark starts with 32 rival hypotheses deliberately identical on all 11 diagonal cells. A solver must identify the hidden true world using off-diagonal intersections.
+Observer121 deliberately preserves negative results. The project began with 11 diagonal observations and 110 cross-observer intersections, then progressively strengthened its baselines rather than renaming failed mechanisms.
 
-ZGTC combines four pressures:
+See **SEQUENCE.md** for the v3 → v6 convergence record.
 
-1. **Zigzag** - move away from already explored geometry and the diagonal.
-2. **Gap** - target cells where surviving hypotheses disagree most strongly.
-3. **Target** - prefer one observation that can eliminate many hypotheses at once.
-4. **Crash** - reward falsification; cross-swap 2x2 rectangles receive explicit pressure.
+### v3 — ZGTC
+Compared random, zigzag-only, disagreement-greedy, rectangle attack, and Zigzag→Gap→Target→Crash. Disagreement-greedy was stronger than ZGTC.
 
-Internal baselines:
-- random sampling
-- zigzag-only
-- disagreement-greedy
-- rectangle-attack
-- ZGTC composite
+### v4 — Greedy-trap attack
+A planted cross-rectangle construction was designed to favor coordinated system-observer reasoning. Greedy disagreement still won.
+
+### v5 — Decision-relative attack
+The stopping rule was changed from exact world identification to decision resolution. Ordinary decision-aware tests resolved the construction, eliminating the proposed advantage.
+
+### v6 — Final AESHO compilation attack
+A generated balanced intervention beats a restricted primitive equality-test library, but the advantage disappears when the same balanced tests are available in a fixed compiled library.
 
 Run:
 
 ```bash
-python src/zgtc_benchmark.py
+python src/final_aesho_test.py
 ```
 
-Generated artifacts:
-- `artifacts/comparison_results.csv`
-- `artifacts/comparison_summary.csv`
-- `artifacts/comparison_summary.json`
-- `artifacts/REPORT.md`
+The workflow stores:
+- scaling results and summaries,
+- selected complete sequential traces,
+- compilation audit,
+- final report.
 
-See `COMPARISON.md` for the prior-art-oriented comparison.
+**Current conclusion:** the tested branch does not establish a new information-theoretic observation principle. It does expose the distinction between a restricted primitive library, a succinct experiment generator, and an equivalently expressive compiled library. This negative result is retained as part of the scientific record.
 
-The repository is a falsification laboratory. It does not claim that zigzag search, hypothesis disagreement, factorial interactions, active model discrimination, or falsification are individually novel.
+## Earlier benchmark
+
+The original exact-certificate benchmark remains available through `src/run_benchmark.py` and `.github/workflows/benchmark.yml`.
 
 ## License
 
