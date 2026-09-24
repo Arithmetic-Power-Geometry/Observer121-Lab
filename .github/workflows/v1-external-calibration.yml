@@ -1,0 +1,15 @@
+name: Observer121 V1 external calibration
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  calibration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python src/v1_external_calibration.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: observer121-v1-external-calibration
+          path: artifacts/v1-external-calibration/
