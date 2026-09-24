@@ -1,0 +1,24 @@
+name: Observer121 ZGTC benchmark
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  zgtc-benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run ZGTC benchmark
+        run: python src/zgtc_benchmark.py
+      - name: Upload ZGTC artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: observer121-zgtc-artifacts
+          path: artifacts/
+          if-no-files-found: error
