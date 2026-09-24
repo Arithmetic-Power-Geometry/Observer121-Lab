@@ -1,0 +1,15 @@
+name: Observer121 assurance frontier
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  frontier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python src/assurance_frontier.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: observer121-assurance-frontier
+          path: artifacts/assurance-frontier/
