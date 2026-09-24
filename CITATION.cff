@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Observer121: A Matched-Control Framework for Attributing Productivity in Adaptive Observation"
+type: software
+authors:
+  - family-names: "Akhtar"
+    given-names: "Mohammad Amir Khusru"
+version: "V1"
+date-released: "2026-09-24"
+license: "Apache-2.0"
+repository-code: "https://github.com/Arithmetic-Power-Geometry/Observer121-Lab"
+doi: "10.5281/zenodo.22943547"
+url: "https://doi.org/10.5281/zenodo.22943547"
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Akhtar"
+      given-names: "Mohammad Amir Khusru"
+  title: "Observer121: A Matched-Control Framework for Attributing Productivity in Adaptive Observation"
+  version: "V1"
+  year: 2026
+  publisher:
+    name: "Zenodo"
+  doi: "10.5281/zenodo.22943547"
+  url: "https://doi.org/10.5281/zenodo.22943547"
