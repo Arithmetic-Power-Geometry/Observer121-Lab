@@ -1,69 +1,40 @@
 # Observer121-Lab
 
-**121 system–observer worlds. Eleven diagonal observations. One question: when can unknown structure be exploited without mistaking a pattern for a proof?**
+**121 system-observer worlds; 11 diagonal observations; 110 cross-observer intersections.**
 
-This repository is an adversarial computational laboratory for an 11 × 11 system–observer matrix:
+## v3: Zigzag -> Gap -> Target -> Crash (ZGTC)
 
-- 11 system states
-- 11 observer states
-- 121 intersections
-- 11 diagonal cells initially revealed
-- 110 off-diagonal cells hidden
+The v3 benchmark starts with 32 rival hypotheses deliberately identical on all 11 diagonal cells. A solver must identify the hidden true world using off-diagonal intersections.
 
-## Core result targeted by the software
+ZGTC combines four pressures:
 
-The software separates three situations that are often conflated:
+1. **Zigzag** - move away from already explored geometry and the diagonal.
+2. **Gap** - target cells where surviving hypotheses disagree most strongly.
+3. **Target** - prefer one observation that can eliminate many hypotheses at once.
+4. **Crash** - reward falsification; cross-swap 2x2 rectangles receive explicit pressure.
 
-1. **Known structure** — classical structured reconstruction can be cheap.
-2. **Apparent structure** — a few confirming cells are not an exact certificate.
-3. **Certified structure** — a solver may skip observations only after the structural identity has been verified strongly enough for the benchmark's ambient model.
+Internal baselines:
+- random sampling
+- zigzag-only
+- disagreement-greedy
+- rectangle-attack
+- ZGTC composite
 
-The benchmark includes exact adversarial lookalikes (`near_additive`, `near_rank1`) specifically to kill unsafe early-stopping rules.
-
-## Current experimental finding
-
-The v2 exact-certificate solver is deliberately conservative. It achieves exact reconstruction on the benchmark suite, including adversarial near-structured worlds, but the cost of exact certification can erase the observational savings. This exposes the central research problem rather than hiding it:
-
-> **Can a previously unknown structural law be certified for less than the observations it allows us to skip?**
-
-That *certificate-economy gap* is the quantity the lab is designed to measure.
-
-## Families
-
-- additive
-- symmetric
-- rank-1
-- periodic
-- block
-- near-additive adversary
-- near-rank-1 adversary
-- unstructured
-
-## Baselines
-
-- `exhaustive`: observe all 110 hidden cells
-- `oracle_family`: reveal the family label; positive control for the value of known structure
-- `exact_certificate_solver`: unknown family, explicit structural checks, adversarial fallback
-
-## Reproduce
+Run:
 
 ```bash
-python src/run_benchmark.py
+python src/zgtc_benchmark.py
 ```
 
-Artifacts are written to `artifacts/`:
+Generated artifacts:
+- `artifacts/comparison_results.csv`
+- `artifacts/comparison_summary.csv`
+- `artifacts/comparison_summary.json`
+- `artifacts/REPORT.md`
 
-- `results.csv`
-- `summary.json`
-- `REPORT.md`
+See `COMPARISON.md` for the prior-art-oriented comparison.
 
-## GitHub Actions
-
-The included workflow runs the benchmark on every push and pull request and uploads the generated artifacts.
-
-## Research status
-
-The repository is a falsification laboratory. It does **not** claim that an 11×11 interaction matrix, matrix completion, adaptive experimental design, or model selection is itself novel. Existing work already covers adaptive experimental design, low-rank matrix completion, robust/adversarial matrix recovery, and property testing. The research target is narrower: exact, cost-accounted discovery and certification of previously unknown exploitable structure under adversarial lookalikes.
+The repository is a falsification laboratory. It does not claim that zigzag search, hypothesis disagreement, factorial interactions, active model discrimination, or falsification are individually novel.
 
 ## License
 
