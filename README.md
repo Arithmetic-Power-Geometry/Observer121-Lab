@@ -1,46 +1,50 @@
 # Observer121-Lab
 
-**A controlled laboratory for locating the source of productivity in adaptive observation.**
+**A matched-control laboratory for attributing why an observation strategy appears more productive.**
 
-## research question
+## Research question
 
-When an observation strategy uses a richer experiment language, does its measured advantage come from additional information, from online generation, or from the representation used to make the experiments available?
+A lower observation count does not by itself identify the source of the gain. Observer121 asks whether an apparent improvement is attributable to **selection policy, adaptivity, query-language expressivity, representation, or information efficiency**, and whether that attribution is isolated, confounded, eliminated by a matched control, interaction-dependent, or unresolved.
 
-The productivity audit keeps these effects separate. It compares a primitive equality-test library, online balanced observation generation, the same balanced policy written in advance as a fixed procedure, and an explicitly materialized balanced decision-tree representation.
+The scientific framework represents an observation procedure as a configuration
 
-Run:
+`C = (W, Q, P, R, B)`
 
-```bash
-python src/v1_productivity_audit.py
-```
+with world/hypothesis family, admissible query language, observation-selection policy, representation, and resource/accounting rule.
 
-The GitHub Actions workflow `Observer121 productivity audit` stores trial-level results, summaries, and the report as the artifact `observer121-v1-productivity-audit`.
+## Current evidence
 
-## Current result
+The repository contains reproducible positive calibrations, negative controls, and an external real-data validation.
 
-Across problem sizes from 16 through 1,048,576, generated balanced observation and the equivalent procedural compiled policy use the same number of observations on every trial. At the largest size both require 20 observations. The primitive equality strategy requires far more observations, while explicit materialization of the balanced policy requires 1,048,575 internal nodes and 20,971,520 split-membership bits.
+- **Matched-language adaptivity:** adaptive and non-adaptive policies use the same threshold-query language. At `n = 1,048,576`, adaptive binary search uses 20 queries while exact non-adaptive identification requires 1,048,575 thresholds.
+- **Query-language calibration:** fixed bit queries reach logarithmic exact identification without requiring online query generation.
+- **Generation/compilation control:** generated balanced queries and an equivalent procedural compiled policy match query-for-query; the surviving benefit is representation succinctness rather than a unique information advantage.
+- **Promised versus justified attribution:** in the 11 x 11 additive calibration, a connected 21-cell design determines the additive model, while exact certification against an unrestricted single hidden-cell deviation requires all 121 cells.
+- **Risk-controlled assurance:** finite-population hypergeometric auditing connects the 21-cell promised design to exhaustive certification under explicit `(K, delta)` assumptions.
+- **Real-data validation:** random and uncertainty acquisition are compared on the Wisconsin Diagnostic Breast Cancer dataset with the split, initial labels, learner, features, preprocessing, and label budget held fixed.
 
-The experiment therefore does **not** establish a unique information-theoretic advantage for online generation. It does expose a useful representation distinction: a compact procedure can realize the same observation policy without explicitly materializing the full decision tree.
+## Scientific boundary
 
-See **V1_TEST.md** for the test definition and kill criterion.
+Observer121 is **not** presented as a new universal information theory, a new active-learning algorithm, a new factorial-design theorem, a new property-testing bound, or a new succinctness theorem. The candidate contribution is methodological: a common benchmark for testing whether the proposed source of an observation-productivity gain survives matched controls.
 
-## Earlier falsification controls
+See:
 
-Earlier experiments remain in the repository as controls. They tested composite zigzag/disagreement policies, cross-rectangle attacks, decision-relative stopping, and the initial generation-versus-compilation comparison. They are retained because they document which apparent advantages disappear under stronger baselines. They are not presented as separate foundational theories.
-
-See **SEQUENCE.md** for that development record.
+- `CLAIM_REGISTER.md` for permitted and excluded claims.
+- `CONVERGENCE_AUDIT.md` for the research convergence audit.
+- `ATTRIBUTION_THEORY.md` for the formal diagnostic states.
+- `ATTRIBUTION_MATRIX.md` for the matched-control map.
+- `JUSTIFIED_ATTRIBUTION.md` and `ASSURANCE_FRONTIER.md` for evidence-accounting boundaries.
+- `LITERATURE_CONVERGENCE.md` for the prior-art boundary.
+- `SEQUENCE.md` for earlier falsification controls and development provenance.
 
 ## Reproducibility
 
-GitHub Actions executes the audit with Python 3.12 and uploads the complete numerical artifact. The earlier benchmark workflows remain available for independent regression checks.
+GitHub Actions executes the benchmark programs and stores numerical artifacts. Scientific prose uses **Observer121** without a version suffix; version identifiers remain in software/workflow names where needed for provenance.
+
+The principal scripts are in `src/`, including the productivity audit, matched-language adaptivity control, external calibration, real-data validation, attribution-identifiability check, minimum-attribution kill test, justified-attribution audit, and assurance frontier.
 
 ## License
 
 Apache License 2.0.
 
 Copyright (C) 2026 Mohammad Amir Khusru Akhtar
-
-
-## Attribution matrix
-
-The current benchmark components and their matched controls are summarized in `ATTRIBUTION_MATRIX.md`. Scientific prose uses **Observer121** without a version suffix; release and artifact metadata may retain version identifiers for reproducibility.
