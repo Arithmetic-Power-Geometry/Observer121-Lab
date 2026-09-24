@@ -1,42 +1,38 @@
 # Observer121-Lab
 
-**121 system-observer worlds; a reproducible falsification laboratory for testing apparent gains in adaptive observation.**
+**A controlled laboratory for locating the source of productivity in adaptive observation.**
 
-## Research status
+## V1 research question
 
-Observer121 deliberately preserves negative results. The project began with 11 diagonal observations and 110 cross-observer intersections, then progressively strengthened its baselines rather than renaming failed mechanisms.
+When an observation strategy uses a richer experiment language, does its measured advantage come from additional information, from online generation, or from the representation used to make the experiments available?
 
-See **SEQUENCE.md** for the v3 → v6 convergence record.
-
-### v3 — ZGTC
-Compared random, zigzag-only, disagreement-greedy, rectangle attack, and Zigzag→Gap→Target→Crash. Disagreement-greedy was stronger than ZGTC.
-
-### v4 — Greedy-trap attack
-A planted cross-rectangle construction was designed to favor coordinated system-observer reasoning. Greedy disagreement still won.
-
-### v5 — Decision-relative attack
-The stopping rule was changed from exact world identification to decision resolution. Ordinary decision-aware tests resolved the construction, eliminating the proposed advantage.
-
-### v6 — Final AESHO compilation attack
-A generated balanced intervention beats a restricted primitive equality-test library, but the advantage disappears when the same balanced tests are available in a fixed compiled library.
+The V1 productivity audit keeps these effects separate. It compares a primitive equality-test library, online balanced observation generation, the same balanced policy written in advance as a fixed procedure, and an explicitly materialized balanced decision-tree representation.
 
 Run:
 
 ```bash
-python src/final_aesho_test.py
+python src/v1_productivity_audit.py
 ```
 
-The workflow stores:
-- scaling results and summaries,
-- selected complete sequential traces,
-- compilation audit,
-- final report.
+The GitHub Actions workflow `Observer121 V1 productivity audit` stores trial-level results, summaries, and the report as the artifact `observer121-v1-productivity-audit`.
 
-**Current conclusion:** the tested branch does not establish a new information-theoretic observation principle. It does expose the distinction between a restricted primitive library, a succinct experiment generator, and an equivalently expressive compiled library. This negative result is retained as part of the scientific record.
+## Current V1 result
 
-## Earlier benchmark
+Across problem sizes from 16 through 1,048,576, generated balanced observation and the equivalent procedural compiled policy use the same number of observations on every trial. At the largest size both require 20 observations. The primitive equality strategy requires far more observations, while explicit materialization of the balanced policy requires 1,048,575 internal nodes and 20,971,520 split-membership bits.
 
-The original exact-certificate benchmark remains available through `src/run_benchmark.py` and `.github/workflows/benchmark.yml`.
+The experiment therefore does **not** establish a unique information-theoretic advantage for online generation. It does expose a useful representation distinction: a compact procedure can realize the same observation policy without explicitly materializing the full decision tree.
+
+See **V1_TEST.md** for the test definition and kill criterion.
+
+## Earlier falsification controls
+
+Earlier experiments remain in the repository as controls. They tested composite zigzag/disagreement policies, cross-rectangle attacks, decision-relative stopping, and the initial generation-versus-compilation comparison. They are retained because they document which apparent advantages disappear under stronger baselines. They are not presented as separate foundational theories.
+
+See **SEQUENCE.md** for that development record.
+
+## Reproducibility
+
+GitHub Actions executes the V1 audit with Python 3.12 and uploads the complete numerical artifact. The earlier benchmark workflows remain available for independent regression checks.
 
 ## License
 
