@@ -2,11 +2,11 @@
 
 **A controlled laboratory for locating the source of productivity in adaptive observation.**
 
-## V1 research question
+## research question
 
 When an observation strategy uses a richer experiment language, does its measured advantage come from additional information, from online generation, or from the representation used to make the experiments available?
 
-The V1 productivity audit keeps these effects separate. It compares a primitive equality-test library, online balanced observation generation, the same balanced policy written in advance as a fixed procedure, and an explicitly materialized balanced decision-tree representation.
+The productivity audit keeps these effects separate. It compares a primitive equality-test library, online balanced observation generation, the same balanced policy written in advance as a fixed procedure, and an explicitly materialized balanced decision-tree representation.
 
 Run:
 
@@ -14,9 +14,9 @@ Run:
 python src/v1_productivity_audit.py
 ```
 
-The GitHub Actions workflow `Observer121 V1 productivity audit` stores trial-level results, summaries, and the report as the artifact `observer121-v1-productivity-audit`.
+The GitHub Actions workflow `Observer121 productivity audit` stores trial-level results, summaries, and the report as the artifact `observer121-v1-productivity-audit`.
 
-## Current V1 result
+## Current result
 
 Across problem sizes from 16 through 1,048,576, generated balanced observation and the equivalent procedural compiled policy use the same number of observations on every trial. At the largest size both require 20 observations. The primitive equality strategy requires far more observations, while explicit materialization of the balanced policy requires 1,048,575 internal nodes and 20,971,520 split-membership bits.
 
@@ -32,10 +32,15 @@ See **SEQUENCE.md** for that development record.
 
 ## Reproducibility
 
-GitHub Actions executes the V1 audit with Python 3.12 and uploads the complete numerical artifact. The earlier benchmark workflows remain available for independent regression checks.
+GitHub Actions executes the audit with Python 3.12 and uploads the complete numerical artifact. The earlier benchmark workflows remain available for independent regression checks.
 
 ## License
 
 Apache License 2.0.
 
 Copyright (C) 2026 Mohammad Amir Khusru Akhtar
+
+
+## Attribution matrix
+
+The current benchmark components and their matched controls are summarized in `ATTRIBUTION_MATRIX.md`. Scientific prose uses **Observer121** without a version suffix; release and artifact metadata may retain version identifiers for reproducibility.
