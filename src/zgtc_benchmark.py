@@ -65,11 +65,20 @@ def make_hypotheses(seed:int, n_h=32):
     base=make_base(seed)
     hyps=[Hypothesis("H00_base",base)]
     modes=["single","rectangle","observer_shift","system_shift","multi"]
-    for k in range(1,n_h):
-        hyps.append(Hypothesis(f"H{k:02d}",mutate(base,r,r.choice(modes))))
     dvals=[base[i][i] for i in range(N)]
-    for h in hyps:
-        for i in range(N): h.matrix[i][i]=dvals[i]
+    seen={tuple(tuple(row) for row in base)}
+    attempts=0
+    while len(hyps)<n_h and attempts<10000:
+        attempts+=1
+        m=mutate(base,r,r.choice(modes))
+        for i in range(N): m[i][i]=dvals[i]
+        key=tuple(tuple(row) for row in m)
+        if key in seen:
+            continue
+        seen.add(key)
+        hyps.append(Hypothesis(f"H{len(hyps):02d}",m))
+    if len(hyps)!=n_h:
+        raise RuntimeError("Could not generate enough unique hypotheses")
     return hyps
 
 def survivors_after(hyps, obs):
